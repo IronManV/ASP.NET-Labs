@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NewBrandingStyle.Web.Database;
 using NewBrandingStyle.Web.Models;
 
 namespace NewBrandingStyle.Web.Controllers
 {
     public class CompanyController : Controller
     {
+        private readonly CompanyDbContext _dbContext;
+        public CompanyController(CompanyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public IActionResult Index()
         {
             return View();
@@ -28,5 +34,14 @@ namespace NewBrandingStyle.Web.Controllers
 
             return View("CompanyAdded", viewModel);
         }
+
+        [HttpGet("CompanyList")]
+        public IActionResult CompanyList()
+        {
+            
+            var results = _dbContext.Items.ToList();
+            return Ok(results);
+        }
+
     }
 }
