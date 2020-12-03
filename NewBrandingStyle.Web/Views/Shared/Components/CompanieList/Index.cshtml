@@ -1,0 +1,11 @@
+﻿@model List<NewBrandingStyle.Web.Entities.ItemEntity>
+
+<span>Companies list:</span>
+    @foreach (var item in Model)
+    {
+            <p>
+               ID: @item.Id<br />
+               Name: @item.Name<br />
+               Description: @item.Description
+            </p>
+    }
